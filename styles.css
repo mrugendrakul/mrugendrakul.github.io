@@ -55,6 +55,11 @@ padding-right:5px;
   box-shadow:0 0 5px blue;
 }
 
+.input:hover,.select:hover{
+  border-color:black;
+  outline:none;
+}
+
 #survey-form{
   background:#17167b;
   border-radius:10px;
