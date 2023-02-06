@@ -59,6 +59,9 @@ padding-right:5px;
   border-color:black;
   outline:none;
 }
+.label:hover{
+  border-color: aqua;
+}
 
 #survey-form{
   background:#17167b;
