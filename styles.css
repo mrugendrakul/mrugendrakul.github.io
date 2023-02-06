@@ -1,0 +1,106 @@
+body{
+    background-color:#eee ;
+    font-family:sans-serif;
+  }
+
+#header{
+  position: fixed;
+  top: 0;
+  min-height: 75px;
+ 
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #eee;
+}
+.top{
+  text-align:center;
+}
+
+body{
+  color:white;
+  background:linear-gradient(155deg,rgba(58, 58, 158, 0.8),
+rgba(136, 136, 206, 0.7))
+,url(https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg);
+  background-size:cover;
+  background-position:center;
+  font-family:sans-serif;
+  max-width:700px;
+  margin:auto;
+}
+
+.input,.label,.select{
+display:block;
+padding:5px;
+font-size:16px;
+margin-left:0;
+width:100%;
+padding-right:5px;
+}
+
+
+
+.input,.select{
+  margin-top:5px;
+  border-radius:5px;
+  margin-right: 5px;
+  
+  border:3px solid grey;
+}
+
+.input:focus,.select:focus{
+  border-color:blue;
+  outline:none;
+  box-shadow:0 0 5px blue;
+}
+
+#survey-form{
+  background:#17167b;
+  border-radius:10px;
+  
+}
+.field{
+  border:none;
+}
+#header-img{
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 20px;
+}
+
+#page-wrapper {
+  position: relative;
+}
+
+nav ul{
+     display: flex;
+     flex-direction: row;
+     padding:5px;
+     margin:5px;
+}
+
+.label{
+  padding-right:5px;
+  margin-right:25px;
+  width:96%;
+  margin:auto;
+  align-items:center;
+  
+}
+
+#textarea{
+  padding:5px;
+  margin-top:5px;
+}
+
+#submit{
+  width:20%;
+  margin:auto;
+  margin-top:10px;
+}
