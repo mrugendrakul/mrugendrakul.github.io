@@ -3,7 +3,8 @@
 }
 
 .top{
-    background-color: rgb(64, 59, 59);
+    background: url("header.png");
+    background-size: cover;
     height:67.5px;
     color:white;
     /* text-align:center; */
@@ -11,22 +12,23 @@
     display: flex;
     align-items: center;
     width:100%;
+
 }
 .button1{
     
     /* padding-top:10px; */
-    padding:16px;
+    padding:8px 30px;
     display: inline-block;
     position: relative;
     left:25%;
     background-color: rgba(64, 59, 59,0);
     color:white;
-    transition:ease-out 0.2s ;
+    transition:ease-out 0.4s ;
     border:0px;
-    border-bottom:2px solid rgb(64, 59, 59);
+    /* border-bottom:2px solid rgb(64, 59, 59); */
 }
 .button1:hover{
-    border-bottom:3px solid #3D9BE9;
+    /* border-bottom:3px solid #3D9BE9; */
     /* background-color: #3D9BE9; */
     /* bottom:10px; */
     cursor: pointer;
@@ -53,3 +55,4 @@
         top:2px;
     }
 }
+
