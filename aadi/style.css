@@ -50,6 +50,10 @@
     
 }
 
+.bgg{
+    border: 3px solid black;
+}
+
 @keyframes menu{
     50%{
         top:2px;
