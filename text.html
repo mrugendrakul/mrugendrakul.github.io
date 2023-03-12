@@ -8,7 +8,7 @@
 
 <body>
 
-  <div id="3d" class="d">
+  <div id="d" class="d">
 
   </div>
   <div>
@@ -17,54 +17,81 @@
     </button>
   </div>
   <script type="module">
-    // import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-    import * as THREE from './node_modules/three/build/three.module.js';
-    const win = document.getElementById("3d");
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 500);
+    import * as THREE  from './node_modules/three/build/three.module.js';
+    import {OrbitControls} from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+    import { FontLoader } from './node_modules/three/examples/jsm/loaders/FontLoader.js'
+    import { TextGeometry } from './node_modules/three/examples/jsm/geometries/TextGeometry.js';
+    const scene =new THREE.Scene();
+    scene.background=new THREE.Color(0xffffff);
 
-    var shouldRotate = false;
-    const btn = document.getElementById("next");
-    btn.addEventListener('click', () => {
-      console.log("pressed");
+    const camera = new THREE.PerspectiveCamera(45,window.innerWidth/window.innerHeight,0.1,1000);
 
-      shouldRotate = !shouldRotate;
+    camera.position.z=45;
+    camera.position.x=3;
+    camera.position.y=20;
 
+    const renderer= new THREE.WebGLRenderer({antialias:true});
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.shadowMap.enabled=true;
+
+    const controls=new OrbitControls(camera,renderer.domElement);
+    controls.target=new THREE.Vector3(0,0,-40);
+    controls.update();
+
+    const plane= new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshPhongMaterial({color:0x0a7d15}));
+    plane.rotation.x= -Math.PI/2;
+    plane.receiveShadow=true;
+    scene.add(plane);
+
+    scene.add(new THREE.AmbientLight(0xffffff,0.5));
+
+    const light1=new THREE.PointLight(0xff6666,1,100);
+    light1.castShadow=true;
+    light1.shadow.mapSize.width=4096;
+    light1.shadow.mapSize.height=4096;
+    scene.add(light1);
+
+    const light2=new THREE.PointLight(0x33ff33,1,100);
+    light2.castShadow=true;
+    light2.shadow.mapSize.width=4096;
+    light2.shadow.mapSize.height=4096;
+    scene.add(light2);
+
+    
+    document.getElementById("d").appendChild(renderer.domElement);
+
+    const loader=new FontLoader();
+
+    loader.load('./fonts/Yakin_Regular.json',function (font){
+      const geometry=new TextGeometry("Hi hello andh this is ",{
+        font:font,
+        size:6,
+        height:2
+      })
+      const textMesh=new THREE.Mesh(geometry,[
+      new THREE.MeshPhongMaterial({color:0xad400}),
+      new THREE.MeshPhongMaterial({color: 0x5c2301})
+    ])
+      
+      textMesh.castShadow=true;
+      textMesh.position.y=1;
+      textMesh.rotation.y=0.2;
+      scene.add(textMesh);
+      document.getElementById("next").addEventListener('click',()=>{
+      textMesh.rotation.x+=20;
+      textMesh.rotation.y+=20;
     })
+    });
 
-
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById("3d").appendChild(renderer.domElement);
-
-    const linemat = new THREE.LineBasicMaterial({ color: 0x0000ff });
-    const points = [];
-    points.push(new THREE.Vector3(-10, 0, 0));
-    points.push(new THREE.Vector3(0, 10, 0));
-    points.push(new THREE.Vector3(0, 0, 0));
-
-    const lines = new THREE.BufferGeometry().setFromPoints(points);
-    const line = new THREE.Line(lines, linemat);
-    scene.add(line);
-
-    // camera.lookAt=(0,0,0);
-
-    function animate() {
+    function animate(){
+      renderer.render(scene,camera);
+      const now=Date.now()/1000;
+      light1.position.y=20;
+      light1.position.x=Math.cos(now)*20
       requestAnimationFrame(animate);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      if (shouldRotate == true) {
-        cube.rotation.z += 0.02;
-        cube.rotation.x += 0.01;
-        console.log("truth")
-      }
-      renderer.render(scene, camera);
     }
     animate();
-
-
-
-
-
   </script>
   <script>
 
