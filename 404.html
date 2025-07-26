@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Get the current path from the URL.
+      var path = window.location.pathname;
+
+      // Store it in sessionStorage.
+      sessionStorage.redirect = path;
+
+      // Redirect to the root of the site (index.html).
+      // The script in index.html will read sessionStorage.
+      window.location.replace(
+        '/' + path.split('/')[1] // Preserves the repo name for GH pages
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
